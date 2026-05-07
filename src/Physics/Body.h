@@ -63,4 +63,19 @@ struct Body {
         force = {};
         torque = 0.f;
     }
+
+    void Integrate(float dt, Vec2 gravity) {
+        if (invMass == 0.f) return;
+
+        // Linear
+        Vec2 acceleration = force * invMass + gravity;
+        velocity += acceleration * dt;
+        position += velocity * dt;
+
+        // Angular
+        angularVelocity += torque * invInertia * dt;
+        rotation += angularVelocity * dt;
+
+        ClearForces();
+    }
 };

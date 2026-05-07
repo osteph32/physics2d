@@ -5,36 +5,17 @@
 #include "Math/Vec2.h"
 #include "Physics/Body.h"
 
-// Filled circle
+// Circle
 void DrawCircle(SDL_Renderer* r, Vec2 p, float radius, SDL_Color col) {
     SDL_SetRenderDrawColor(r, col.r, col.g, col.b, col.a);
-
     int cx = (int)p.x, cy = (int)p.y, rad = (int)radius;
-
     for (int dy = -rad; dy <= rad; dy++) {
         int dx = (int)std::sqrt((float)(rad*rad - dy*dy));
         SDL_RenderDrawLine(r, cx - dx, cy + dy, cx + dx, cy + dy);
     }
 }
 
-void DrawRect(SDL_Renderer* r, Vec2 pos, float hw, float hh, SDL_Color col) {
-    SDL_SetRenderDrawColor(r, col.r, col.g, col.b, col.a);
-    SDL_Rect rect {
-        (int)(pos.x - hw), (int)(pos.y - hh),
-        (int)(hw * 2), (int)(hh * 2)
-    };
-    SDL_RenderDrawRect(r, &rect);
-}
-
 int main() {
-
-    // Body test
-    Body ball({400, 100}, 1.f, 20.f);
-    printf("mass=%.1f  invMass=%.4f\n", ball.mass, ball.invMass);  // 1.0  1.0
-    printf("inertia=%.1f\n", ball.inertia);                        // 200.0
-
-    Body ground = Body::MakeStatic({400, 580}, 400.f);
-    printf("static invMass=%.1f\n", ground.invMass);
 
     // SDL Window
     SDL_Init(SDL_INIT_VIDEO);
@@ -51,6 +32,17 @@ int main() {
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
     );
     
+    // Simulation Setup
+    const Vec2 gravity = {0.f, 500.f};
+    const float dt = 1.7 / 60.f;
+
+    Body ball({400.f, 50.f}, 1.f, 20.f);
+    ball.restitution = 0.6f;
+
+    Uint32 prevTime = SDL_GetTicks();
+    float  accumulator = 0.f;
+
+
     bool running = true;
     SDL_Event event;
 
@@ -60,11 +52,30 @@ int main() {
                 running = false;
             }
         
+        Uint32 now = SDL_GetTicks();
+        float elapsed = (now - prevTime) / 1000.f;
+        prevTime = now;
+        accumulator += elapsed;
+
+        while (accumulator >= dt) {
+            ball.Integrate(dt, gravity);
+            const float floorY = 580.f;
+            if (ball.position.y + ball.radius > floorY) {
+                ball.position.y = floorY - ball.radius;
+                ball.velocity.y *= -ball.restitution;
+            }
+
+            accumulator -= dt;
+        }
+        
+        // Render
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
 
         DrawCircle(renderer, ball.position, ball.radius, {100, 180, 255, 255});
-        DrawCircle(renderer, ground.position, ground.radius, {180, 180, 180, 255});
+
+        SDL_SetRenderDrawColor(renderer, 180, 180, 180, 255);
+        SDL_RenderDrawLine(renderer, 0, 580, 800, 580);
 
         SDL_RenderPresent(renderer);
     }
