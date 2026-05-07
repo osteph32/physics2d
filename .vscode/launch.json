@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [    
+        {
+            "name": "Run physics2d",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/physics2d",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "lldb"
+        }
+    ]
+}
