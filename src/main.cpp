@@ -1,7 +1,9 @@
 // main.cpp
 
 #include <SDL2/SDL.h>
+#include <cstdio>
 #include "Math/Vec2.h"
+#include "Physics/Body.h"
 
 // Filled circle
 void DrawCircle(SDL_Renderer* r, Vec2 p, float radius, SDL_Color col) {
@@ -25,6 +27,14 @@ void DrawRect(SDL_Renderer* r, Vec2 pos, float hw, float hh, SDL_Color col) {
 }
 
 int main() {
+
+    // Body test
+    Body ball({400, 100}, 1.f, 20.f);
+    printf("mass=%.1f  invMass=%.4f\n", ball.mass, ball.invMass);  // 1.0  1.0
+    printf("inertia=%.1f\n", ball.inertia);                        // 200.0
+
+    Body ground = Body::MakeStatic({400, 580}, 400.f);
+    printf("static invMass=%.1f\n", ground.invMass);
 
     // SDL Window
     SDL_Init(SDL_INIT_VIDEO);
@@ -53,9 +63,8 @@ int main() {
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
 
-        DrawCircle(renderer, {200, 300}, 40, {100, 180, 255, 255});
-        DrawCircle(renderer, {400, 300}, 20, {255, 120, 60, 255});
-        DrawRect(renderer, {600, 300}, 50, 30, {120, 220, 120, 255});
+        DrawCircle(renderer, ball.position, ball.radius, {100, 180, 255, 255});
+        DrawCircle(renderer, ground.position, ground.radius, {180, 180, 180, 255});
 
         SDL_RenderPresent(renderer);
     }
@@ -63,5 +72,4 @@ int main() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
-    return 0;
 }
