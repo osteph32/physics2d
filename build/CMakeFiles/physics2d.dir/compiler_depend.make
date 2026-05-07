@@ -160,9 +160,9 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/declval.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/forward.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__verbose_abort \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cmath \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstddef \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdint \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdio \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/float.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/inttypes.h \
@@ -288,6 +288,7 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Math/Vec2.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_assert.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_atomic.h \
@@ -399,6 +400,8 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_audio.h:
 
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_atomic.h:
+
+/Users/oliver/Desktop/Personal\ Projects/physics2d/src/Math/Vec2.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h:
 
@@ -567,6 +570,10 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdint:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstddef:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__availability:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cmath:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_reference_wrapper.h:
 
@@ -850,8 +857,6 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
 
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_main.h:
 
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdio:
-
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/has_virtual_destructor.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/has_unique_object_representation.h:
@@ -949,8 +954,6 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/apply_cv.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/runetype.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__availability:
 
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_guid.h:
 

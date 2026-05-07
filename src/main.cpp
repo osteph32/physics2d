@@ -1,21 +1,30 @@
 // main.cpp
 
 #include <SDL2/SDL.h>
-#include <cstdio>
 #include "Math/Vec2.h"
 
-int main() {
-    
-    // Vec2 Test
-    Vec2 a{3.f, 0.f};
-    Vec2 b{0.f, 4.f};
+// Filled circle
+void DrawCircle(SDL_Renderer* r, Vec2 p, float radius, SDL_Color col) {
+    SDL_SetRenderDrawColor(r, col.r, col.g, col.b, col.a);
 
-    printf("a + b      = (%.1f, %.1f)\n", (a+b).x, (a+b).y);   // (3, 4)
-    printf("a.Dot(b)   = %.1f\n",  a.Dot(b));                   // 0
-    printf("a.Cross(b) = %.1f\n",  a.Cross(b));                  // 12
-    printf("b.Len()    = %.1f\n",  b.Len());                     // 4
-    printf("b.Norm()   = (%.1f, %.1f)\n", b.Norm().x, b.Norm().y); // (0, 1)
-    printf("a.Perp()   = (%.1f, %.1f)\n", a.Perp().x, a.Perp().y); // (0, 3)
+    int cx = (int)p.x, cy = (int)p.y, rad = (int)radius;
+
+    for (int dy = -rad; dy <= rad; dy++) {
+        int dx = (int)std::sqrt((float)(rad*rad - dy*dy));
+        SDL_RenderDrawLine(r, cx - dx, cy + dy, cx + dx, cy + dy);
+    }
+}
+
+void DrawRect(SDL_Renderer* r, Vec2 pos, float hw, float hh, SDL_Color col) {
+    SDL_SetRenderDrawColor(r, col.r, col.g, col.b, col.a);
+    SDL_Rect rect {
+        (int)(pos.x - hw), (int)(pos.y - hh),
+        (int)(hw * 2), (int)(hh * 2)
+    };
+    SDL_RenderDrawRect(r, &rect);
+}
+
+int main() {
 
     // SDL Window
     SDL_Init(SDL_INIT_VIDEO);
@@ -43,6 +52,11 @@ int main() {
         
         SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
         SDL_RenderClear(renderer);
+
+        DrawCircle(renderer, {200, 300}, 40, {100, 180, 255, 255});
+        DrawCircle(renderer, {400, 300}, 20, {255, 120, 60, 255});
+        DrawRect(renderer, {600, 300}, 50, 30, {120, 220, 120, 255});
+
         SDL_RenderPresent(renderer);
     }
 
