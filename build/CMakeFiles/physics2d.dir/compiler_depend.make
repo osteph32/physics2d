@@ -719,6 +719,8 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
   /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Math/Mat2.h \
   /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Math/Vec2.h \
   /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Body.h \
+  /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Collision.h \
+  /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Manifold.h \
   /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Shape.h \
   /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/World.h \
   /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL.h \
@@ -808,6 +810,10 @@ CMakeFiles/physics2d.dir/src/main.cpp.o: /Users/oliver/Desktop/Personal\ Project
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_cpuinfo.h:
 
 /opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2/SDL_blendmode.h:
+
+/Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Manifold.h:
+
+/Users/oliver/Desktop/Personal\ Projects/physics2d/src/Physics/Collision.h:
 
 /Users/oliver/Desktop/Personal\ Projects/physics2d/src/Math/Vec2.h:
 

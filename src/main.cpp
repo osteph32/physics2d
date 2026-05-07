@@ -60,16 +60,21 @@ int main() {
     const float dt = 1.7 / 60.f;
 
     // Shapes (World.h owns bodies)
-    Circle ballShape(20.f);
-    Polygon boxShape; boxShape.SetBox(40.f, 40.f);
-    Polygon floorShape; floorShape.SetBox(400.f, 10.f);
+    Circle ballA(25.f), ballB(20.f), ballC(30.f);
+    Polygon floorShape; floorShape.SetBox(390.f, 10.f);
     Polygon wallLShape; wallLShape.SetBox(10.f, 300.f);
     Polygon wallRShape; wallRShape.SetBox(10.f, 300.f);
 
     World world;
 
-    world.AddDynamic({400.f, 50.f}, 1.f, &ballShape) -> restitution = 0.6f;
-    world.AddDynamic({380.f, 200.f}, 2.f, &boxShape ) -> restitution = 0.4f;
+    auto* b1 = world.AddDynamic({400.f, 50.f}, 1.f, &ballA);
+    auto* b2 = world.AddDynamic({405.f, 150.f}, 1.f, &ballB);
+    auto* b3 = world.AddDynamic({395.f, 270.f}, 2.f, &ballC);
+
+    b1 -> restitution = 0.5f;
+    b2 -> restitution = 0.5f;
+    b3 -> restitution = 0.3f;
+
 
     world.AddStatic({400.f, 570.f}, &floorShape);
     world.AddStatic({10.f, 300.f}, &wallLShape);
