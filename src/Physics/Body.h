@@ -2,11 +2,14 @@
 
 #pragma once
 #include "../Math/Vec2.h"
+#include "../Math/Mat2.h"
+#include "Shape.h"
 
 // Body: object in physics simulation
 struct Body {
     Vec2 position;
     float rotation = 0.f;
+    Mat2  orient;
 
     Vec2 velocity;
     Vec2 force;
@@ -22,18 +25,18 @@ struct Body {
     float restitution = 0.3f;
     float friction = 0.5f;
 
-    float radius = 20.f;
+    Shape* shape = nullptr;
 
     // Constructors
-    Body(Vec2 pos, float mass, float radius)
-        : position(pos), radius(radius)
+    Body(Vec2 pos, float mass, Shape* shape)
+        : position(pos), shape(shape)
     {
         SetMass(mass);
-        SetInertia(0.5f * mass * radius * radius);
+        SetInertia(shape->ComputeInertia(mass));
     }
 
-    static Body MakeStatic(Vec2 pos, float radius) {
-        Body b(pos, 1.f, radius);
+    static Body MakeStatic(Vec2 pos, Shape* shape) {
+        Body b(pos, 1.f, shape);
         b.invMass = 0.f;
         b.invInertia = 0.f;
         return b;
@@ -66,15 +69,12 @@ struct Body {
 
     void Integrate(float dt, Vec2 gravity) {
         if (invMass == 0.f) return;
-
-        // Linear
-        Vec2 acceleration = force * invMass + gravity;
-        velocity += acceleration * dt;
+        velocity += (force * invMass + gravity) * dt;
         position += velocity * dt;
-
-        // Angular
         angularVelocity += torque * invInertia * dt;
         rotation += angularVelocity * dt;
+        rotation += angularVelocity * dt;
+        orient = Mat2(rotation);
 
         ClearForces();
     }
